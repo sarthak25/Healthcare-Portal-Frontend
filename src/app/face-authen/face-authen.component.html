@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <p style="text-align: center;"> 
+Kindly look at the screen below to login to the website : 
+  </p>
+  <div class="image-separator">
+      <div style="text-align: left; padding-top: 2%;">
+          <div>
+            <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+             [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+             (initError)="handleInitError($event)"></webcam>
+            <br/>
+        
+          </div>
+          <p style="padding-left: 12%; padding-top: 2%;"> Input Image</p>
+        </div>
+  </div>
+
+
+<!-- <h4 *ngIf="errors.length > 0">Messages:</h4>
+<ul *ngFor="let error of errors">
+	<li>{{error | json}}</li>
+</ul> -->
+<div style="text-align: center">
+    <button (click)="bypassLogin()">Bypass Login</button>
+</div>
+
+</div>

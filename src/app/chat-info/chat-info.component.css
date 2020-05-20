@@ -1,0 +1,67 @@
+img {
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+  }
+  
+  button {
+    margin: 10px;
+  }
+
+  .each-doctor{
+    display: flex;
+    background: #212121;
+    border-left: 2px solid #212121;
+    color: #f1f1f1;
+    font-family: 'Montserrat';
+    padding: 10px;
+    border-radius: 2%;
+    margin: 20px;
+  }
+  table { 
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+
+
+  .doctor-details{
+    padding-left: 20px;
+  }
+
+  .special-button{
+    
+    background:rgb(29, 28, 28);
+    color:rgb(238, 238, 238);
+    border:none;
+    position:relative;
+    height:30px;
+    font-size:1em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  .special-button:hover{
+    background:rgb(29, 28, 28);
+    color:#1AAB8A;
+  }
+  .special-button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all;
+  }
+  .special-button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .special-button:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }

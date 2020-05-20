@@ -1,0 +1,83 @@
+<div class="login">
+  <div *ngIf="userData as user">
+
+    <!-- <button class="button is-info" (click)="cs.create(user.uid)">Create New Chat</button>
+
+    <hr>
+    <h3>My Doctors</h3> -->
+
+    <div *ngFor="let doctor of doctors$ | async; let i = index">
+      <div class="each-doctor left" *ngIf="doctor.uid !== userData.uid">
+        <div>
+          <img class="profile-pic-doc" src="{{doctor.photoURL}}" alt="Slow net" width=100px height=100px
+            style="margin-top: 20px;">
+        </div>
+        <div class="doctor-details">
+          <table>
+            <tr>
+              <td> <i>Name</i> </td>
+              <td> {{doctor.displayName}} </td>
+            </tr>
+            <tr>
+              <td> <i>Expertise</i> </td>
+              <td> {{doctor.expertise}} </td>
+            </tr>
+            <tr>
+              <td> <i>Rate</i> </td>
+              <td> {{doctor.rate}} </td>
+            </tr>
+          </table>
+          <!-- <p><span>[Name] </span>  </p> 
+              <p><span>[Rate] </span> {{doctor.rate}}</p> -->
+          <div>
+            <div style="text-align: center; margin-top: 20%;">
+              <button class="special-button" data-toggle="modal" [attr.data-target]="'#myModal'+i">Chat</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" [attr.id]="'myModal'+i" role="dialog">
+          <div *ngIf="userData.balance >= doctor.rate">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h6 class="modal-title" style="color: black;">Proceed to pay ₹ {{doctor.rate}}?:</h6>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal"
+                    (click)="cs.create(doctor.uid, doctor.displayName, doctor.rate, userData.uid, userData.balance)">Yes</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="userData.balance < doctor.rate">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h6 class="modal-title" style="color: black;">Sorry, your balance is low, please add</h6>
+                  </div>
+                  <div class="modal-body">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- 
+    <h3>My Chats</h3>
+
+    <ul>
+      <li *ngFor="let chat of userChats$ | async">
+        <a [routerLink]="'chats/' + chat.id">{{ chat.id }} - {{ chat.messages.length }} Messages </a>
+      </li>
+    </ul> -->
+  </div>
+
+</div>

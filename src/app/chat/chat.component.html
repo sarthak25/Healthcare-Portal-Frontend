@@ -1,0 +1,154 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-3" id="sidepanel" style="border: 10px solid black;">
+
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="chat$ | async as chat">
+            <div *ngIf=" auth.user$ | async as user">
+          
+              <div class="top">
+                <p><a class="tag" routerLink="/">Back</a>
+                  <span class="tag is-success">
+                    https://firestore-megachat.firebaseapp.com/chats/{{ chat.id }}
+                  </span>
+                </p>
+              </div>
+          
+          
+              <div #chatBox class="chat">
+          
+          
+                <div class="" *ngFor="let msg of chat.messages; trackBy: trackByCreated">
+          
+                  <div class="user">
+                    <img [src]="msg.user?.photoURL || 'assets/unicorn.svg'" width="50px">
+                    <div><span class="tag is-dark">{{ msg.user?.displayName || msg.user?.uid }}</span></div>
+          
+                    <button *ngIf="chat.uid === user.uid || msg.uid === user.uid" class="button is-danger is-small" (click)="cs.deleteMessage(chat, msg)">Delete</button>
+          
+                  </div>
+          
+                  <p>{{ msg.content }}</p>
+          
+          
+                </div>
+          
+          
+          
+              </div>
+          
+              <div class="form">
+                <input class="input" [(ngModel)]="newMsg" maxlength="100" (keydown.enter)="submit(chat.id)">
+          
+                <button type="button" (click)="submit(chat.id)" class="btn btn-secondary" [disabled]="!newMsg">Send</button>
+              </div>
+          
+            </div>
+          </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-full">
+
+  <div class="row h-100">
+    <div class="col-md-3" id="sidepanel">
+      <div *ngFor="let chat_left of userChats$  | async; let i = index">
+        <div id="each-chat">
+          <div class="inside-each-chat">
+            <div class="left-chat">
+              <img src="../../assets/img/doc-icon2.png" width=40px style="border-radius: 50%;">
+            </div>
+            <div class="right-chat">
+              <p>{{chat_left.doctor_name}} <br>
+                {{ chat_left.messages.length }} messages</p>
+            </div>
+          </div>
+        </div>
+        <hr style="color: white;">
+      </div>
+    </div>
+    <div class="col-md-6" id="chatpanel">
+      <div id="chatheader">
+        <div style="display: flex">
+          <img src="../../assets/img/chat-icon.png" width=40px height=40px style="border-radius: 50%; margin: 10px;">
+          <p>
+            Current Chat ID : {{chat_id}}
+          </p>
+        </div>
+      </div>
+      <div id="chatbody">
+        <div *ngIf="chat$ | async as chat">
+          <div *ngIf=" auth.user$ | async as user">
+            <div class="" *ngFor="let msg of chat.messages ; trackBy: trackByCreated">
+              <div id="chat-message" style="display: flex;">
+                <div id="chat-message-user">
+                  <img [src]="msg.user?.photoURL || 'assets/unicorn.svg'" width="50px" style="border-radius: 50%;">
+                </div>
+                <div id="chat-message-content">
+                  <span>{{ msg.content }} </span>
+                </div>
+
+              </div>
+            </div>
+            <div id="inputchat" class="input-group mb-3">
+
+              <input type="text" class="form-control" [(ngModel)]="newMsg" (keydown.enter)="submit(chat.id)"
+                placeholder="Type your message here..." aria-label="Recipient's username"
+                aria-describedby="basic-addon2">
+
+              <button type="button" class="btn btn-dark" style="margin-left: 10px;"
+                (click)="submit(chat.id)">Send</button>
+              <button mat-stroked-button style="margin-left: 10px;" color="primary" data-toggle="modal"
+                data-target="#myModalPatient" *ngIf="user.uid == chat.uid">
+                Symptoms
+              </button>
+              <button mat-stroked-button style="margin-left: 10px;" color="primary" data-toggle="modal"
+                data-target="#myModalDoctor" *ngIf="user.uid == chat.doctor_id">
+                View R
+              </button>
+
+              
+            </div>
+          </div>
+
+          <div class="modal fade" id="myModalPatient" role="dialog" style="font-family: 'Montserrat';">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Enter all the symptoms: </h4>
+                  </div>
+                  <div class="modal-body">
+                    <input type="text" [(ngModel)]="symptoms" size="50" />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="getDisease(chat.id)" data-dismiss="modal">Send</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="modal fade" id="myModalDoctor" role="dialog" style="font-family: 'Montserrat';">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Recommended Disease: </h4>
+                  </div>
+                  <div class="modal-body">
+                    <p *ngIf="chat.predicted">{{chat.predicted}} - [Highest Probability]</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  
