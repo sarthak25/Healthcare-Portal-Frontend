@@ -1,0 +1,144 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <div class="navbar-brand col-sm-3 col-md-2 mr-0">
+    <span class="dasboard-text">Dashboard</span>
+  </div>
+  <div style="float: right; margin-right: 10px;">
+  <button mat-raised-button
+        matTooltip="Click to add money to wallet"
+        data-toggle="modal" data-target="#myModal">
+  Your current balance: ₹ {{userData.balance}} 
+</button> 
+  </div>
+</nav>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" (click)="viewProfile()">
+              <i class="fas fa-user"></i>User Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="viewPatientHistory()">
+              <i class="fas fa-user"></i>Patient History
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="findLiveChat()">
+              <i class="fas fa-user"></i>Live Consultation
+            </a>
+          </li>
+          <!-- Calling SignOut() Api from AuthService -->
+          <li class="nav-item">
+            <a class="nav-link" (click)="authService.SignOut()">
+              <i class="fas fa-sign-out-alt"></i>Log out
+            </a>
+          </li>
+
+        </ul>
+
+        <div style="text-align: center; margin-top: 20%;">
+          <button class="special-button" (click)="authService.setDoctor(1, userData.uid)" *ngIf="!doctorMode">Activate Doctor</button>
+          <button class="special-button" (click)="authService.setDoctor(0, userData.uid)" *ngIf="doctorMode">Deactivate Doctor</button>
+
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+
+        <div *ngIf="userChoice == 1">
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Profile</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div id="outer_cover" *ngIf="userData as user">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="media">
+                  <img class="align-self-start mr-3 img-thumbnail rounded-circle"
+                    src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}" alt="{{user.displayName}}">
+                  <div class="media-body" style="margin-top: 20px;">
+                    <p>Name: <strong>{{user.displayName}}</strong></p>
+                    <p>User ID: <strong>{{user.uid}}</strong></p>
+                    <p>Email: <strong>{{user.email}}</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example-container">
+              <mat-form-field>
+                <textarea matInput [(ngModel)]="details.designation" [disabled]="!editMode"></textarea>
+                <mat-hint>(Designation)</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field>
+                <textarea matInput [(ngModel)]="details.aadhar" [disabled]="!editMode"></textarea>
+                <mat-hint>(Aadhar Number)</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field>
+                <textarea matInput [(ngModel)]="details.age" [disabled]="!editMode"></textarea>
+                <mat-hint>(Age)</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field>
+                <textarea matInput [(ngModel)]="details.weight" [disabled]="!editMode"></textarea>
+                <mat-hint>(Weight)</mat-hint>
+              </mat-form-field>
+
+            </div>
+            <button *ngIf="!editMode" mat-raised-button color="warn" style="left: 52%;"
+              (click)="toggleEdit()">Edit</button>
+            <button *ngIf="editMode" mat-raised-button color="primary" style="left: 51%;"
+              (click)="updateDetails()">Update</button>
+          </div>
+
+        </div>
+
+        <div *ngIf="userChoice == 2">
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Patient History</h1>
+          </div>
+          <app-patient-history [user_id]="userData.uid"></app-patient-history>
+        </div>
+
+        <div *ngIf="userChoice == 3">
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Choose a Doctor</h1>
+          </div>
+          <app-chat-info></app-chat-info>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+</div>
+
+ <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add amount:</h4>
+        </div>
+        <div class="modal-body">
+          <input type="text" [(ngModel)]="toAdd"/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="setAmount(toAdd)" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>

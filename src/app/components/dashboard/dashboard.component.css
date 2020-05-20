@@ -1,0 +1,54 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+  }
+  
+  .example-container > * {
+    width: 50%;
+  }
+
+
+  body:before{
+    content:'';
+    height:100%;
+    display:inline-block;
+    vertical-align:middle;
+  }
+  .special-button{
+    
+    background:#01579b;
+    color:rgb(238, 238, 238);
+    border:none;
+    position:relative;
+    height:40px;
+    font-size:1em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  .special-button:hover{
+    background:rgb(56, 52, 52);
+    color:#1AAB8A;
+  }
+  .special-button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all;
+  }
+  .special-button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .special-button:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
