@@ -31,3 +31,27 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Cause of developin this portal
+
+Focusing on quality health care services means ensuring patient health management at
+a superior level at all times. However, federal rules and regulations are making
+processes even more tedious and lengthy. Due to this, keeping such processes intact
+and still providing effective patient care is not feasible in many cases. The major issue
+in providing quality healthcare services is the gap between providers and payers. The
+dependency of middlemen in the supply chain makes it even worse.
+
+In the healthcare sector, critical patient data and information remains scattered across
+different departments and systems. Due to this, crucial data is not accessible and
+handily available in times of need. The existing healthcare ecosystem cannot be
+considered complete as multiple players in the system do not have a system in place
+for smooth process management. Moreover, it is also termed as inadequate for
+handling the exchange of information and requires certain major changes.
+
+Block chain is one of the most disruptive technologies that have taken the world by
+storm these days. A block chain is nothing but a distributed ledger that keeps track of
+transactions and activities happening throughout the network. The most unique factor
+of a block chain is that once a piece of information is added to the distributed ledger,
+no one can alter it. The information stored on a block chain is absolutely secure in its
+entirety. In order for anyone to make a change in one block, it is mandatory to make
+changes to all the subsequent blocks after it.
