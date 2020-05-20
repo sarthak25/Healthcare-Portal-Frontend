@@ -1,0 +1,23 @@
+
+
+
+    <div class="login-dark">
+        <form method="post">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+            <div class="form-group"><input type="text" class="form-control" placeholder="Username" #userName required></div>
+            <div class="form-group"><input type="password" class="form-control" placeholder="Password" #userPassword required></div>
+            <div class="form-group"> <input type="button" class="btn btn-primary btn-block" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)"></div><a href="#" class="forgot">Forgot your email or password?</a>
+
+            <div><p style="text-align: center; padding-top: 20px"> OR </p></div>
+
+            <div class="form-group">
+              <button type="button" class="btn btn-primary btn-block" (click)="authService.googleSignIn()">
+                <i class="fab fa-google-plus-g"></i>
+                Log in with Google
+              </button>
+            </div>
+
+          </form>
+    </div>
+
