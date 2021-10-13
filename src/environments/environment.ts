@@ -10,7 +10,9 @@ export const environment = {
     databaseURL: 'https://sdd-project-de5af.firebaseio.com',
     projectId: 'sdd-project-de5af',
     storageBucket: 'sdd-project-de5af.appspot.com',
-    messagingSenderId: '105612568496'
+    messagingSenderId: '105612568496',
+    messagingRecieverId: '107835723513',
+    vendorBucket: 'sdd-project-qc7bg.appspot.com'
   },
 };
 
