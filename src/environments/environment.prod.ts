@@ -6,6 +6,8 @@ export const environment = {
     databaseURL: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     projectId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     storageBucket: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    messagingSenderId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    messagingSenderId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    messagingRecieverId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    vendorBucket: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   }
 };
